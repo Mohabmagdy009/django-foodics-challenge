@@ -1,7 +1,5 @@
 # region Imports
 from rest_framework.permissions import DjangoModelPermissions
-
-
 # endregion
 
 

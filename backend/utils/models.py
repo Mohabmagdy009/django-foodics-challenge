@@ -1,10 +1,13 @@
+# region Imports
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from safedelete.models import SafeDeleteModel
 from safedelete.managers import SafeDeleteManager
+# endregion
 
 
+# region Main user table to override django
 class UserManager(BaseUserManager, SafeDeleteManager):
     def create_user(self, email, password=None, name=None, **extra_fields):
         if not email:
@@ -58,8 +61,10 @@ class User(AbstractBaseUser, PermissionsMixin, SafeDeleteModel):
 
     def __str__(self):
         return str(self.first_name + ' ' + self.last_name)
+# endregion
 
 
+# region Base Models Not Loaded
 class BaseFullModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -67,7 +72,7 @@ class BaseFullModel(models.Model):
     user_id_update = models.ForeignKey(User, on_delete=models.PROTECT, related_name="%(class)s_updated_by")
 
     class Meta:
-        abstract = True  # This means that Django will not create a database table for the abstract model itself.
+        abstract = True
 
 
 class BaseCreatedByModel(models.Model):
@@ -83,3 +88,4 @@ class BaseCreatedAtModel(models.Model):
 
     class Meta:
         abstract = True
+# endregion

@@ -1,6 +1,8 @@
+# region Imports
 from django.core.management.base import BaseCommand
 from utils.models import User
 from dotenv import load_dotenv, set_key
+# endregion
 
 
 class Command(BaseCommand):

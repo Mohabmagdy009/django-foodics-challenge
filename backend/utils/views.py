@@ -1,5 +1,7 @@
+# region Imports
 from utils.importinglibs.views import *
 from django.contrib.auth import authenticate
+# endregion
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -30,6 +32,5 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         }, status=status.HTTP_200_OK)
 
 
-# Standard TokenRefreshView for refreshing tokens
 class CustomTokenRefreshView(TokenRefreshView):
     pass  # Using default behavior from SimpleJWT

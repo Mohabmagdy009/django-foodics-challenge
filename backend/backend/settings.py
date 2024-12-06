@@ -9,11 +9,12 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+# region Imports
 from pathlib import Path
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
+# endregion
 
 # Load environment variables from .env.dev file
 load_dotenv()
@@ -24,8 +25,7 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# -------------------------------------------------------------------
-# Security
+# region Security -------------------------------------------------------------------
 # -------------------------------------------------------------------
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -35,10 +35,9 @@ DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_CREDENTIALS = True
+# endregion
 
-# -------------------------------------------------------------------
-# Installed Applications
-# -------------------------------------------------------------------
+# region Installed Applications -------------------------------------------------------------------
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,10 +57,9 @@ INSTALLED_APPS = [
     # Your apps
     'utils',
 ]
+# endregion
 
-# -------------------------------------------------------------------
-# Middleware
-# -------------------------------------------------------------------
+# region Middleware -------------------------------------------------------------------
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -72,10 +70,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# endregion
 
-# -------------------------------------------------------------------
-# Django REST Framework Configuration
-# -------------------------------------------------------------------
+# region Django REST Framework Configuration -------------------------------------------------------------------
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'EXCEPTION_HANDLER': 'utils.endpointhandling.exception_handler.custom_exception_handler',
@@ -94,15 +91,14 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+# endregion
 
 # -------------------------------------------------------------------
 # URL Configuration
 # -------------------------------------------------------------------
 ROOT_URLCONF = 'backend.urls'
 
-# -------------------------------------------------------------------
-# Template Configuration
-# -------------------------------------------------------------------
+#  region Template Configuration -------------------------------------------------------------------
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -118,6 +114,7 @@ TEMPLATES = [
         },
     },
 ]
+# endregion
 
 # -------------------------------------------------------------------
 # WSGI Application
@@ -184,8 +181,6 @@ CSRF_COOKIE_SECURE = True
 # -------------------------------------------------------------------
 # Static and Media Files
 # -------------------------------------------------------------------
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
 # STATIC_URL = '/static/'
 # STATICFILES_DIRS = [BASE_DIR / 'static']
 
@@ -208,9 +203,7 @@ AUTH_USER_MODEL = 'utils.User'
 # -------------------------------------------------------------------
 SHELL_PLUS = "ipython"
 
-# -------------------------------------------------------------------
-# Logging Configuration
-# -------------------------------------------------------------------
+# region Logging Configuration -------------------------------------------------------------------
 os.makedirs('logs', exist_ok=True)
 LOG_FILE = os.path.join(BASE_DIR, 'logs/django.log')
 
@@ -248,10 +241,9 @@ LOGGING = {
         },
     }
 }
+# endregion
 
-# -------------------------------------------------------------------
-# JWT Token Configuration (SIMPLE_JWT)
-# -------------------------------------------------------------------
+# region JWT Token Configuration (SIMPLE_JWT)
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -261,3 +253,4 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
 }
+# endregion
