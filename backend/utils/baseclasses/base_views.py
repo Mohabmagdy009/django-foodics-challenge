@@ -17,10 +17,10 @@ from django.db import IntegrityError
 
 
 # region Base Classes ==============================================================================
-class CustomResponseViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.UpdateModelMixin,
+class CustomResponseViewSet(GenericViewSet, mixins.CreateModelMixin,
                             mixins.ListModelMixin, mixins.RetrieveModelMixin):
     """
-    A base viewset that tracks the user who created or updated an object &
+    A base viewset that tracks the user who created an object &
     applies consistent response formats for success and errors, with no option to delete.
     """
 
@@ -33,18 +33,6 @@ class CustomResponseViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.Upda
         """
         try:
             serializer.save(user_id_create=self.request.user, user_id_update=self.request.user)
-        except IntegrityError as e:
-            raise APIException(f"Duplicate entry error: {str(e)}")
-
-    def perform_update(self, serializer):
-        """
-        Sets the user who updated the object during a PUT/PATCH request.
-
-        Parameters:
-        - serializer: Serializer instance used to save the object.
-        """
-        try:
-            serializer.save(user_id_update=self.request.user)
         except IntegrityError as e:
             raise APIException(f"Duplicate entry error: {str(e)}")
 
@@ -62,7 +50,7 @@ class CustomResponseViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.Upda
             else:
                 return super().finalize_response(request, deletion_successful_response(), *args, **kwargs)
         else:
-            return super().finalize_response(request, error_response(response.data), *args, **kwargs)
+            return super().finalize_response(request, error_response(response.data, status_code=response.status_code), *args, **kwargs)
 
 
 # endregion
