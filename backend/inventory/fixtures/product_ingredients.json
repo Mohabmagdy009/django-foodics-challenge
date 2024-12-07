@@ -1,0 +1,80 @@
+[
+  {
+    "model": "inventory.productingredient",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "ingredient": 1,
+      "quantity": 150,
+      "created_at": "2024-12-06T10:00:00",
+      "updated_at": "2024-12-06T10:00:00",
+      "user_id_create_id": 1,
+      "user_id_update_id": 1
+    }
+  },
+  {
+    "model": "inventory.productingredient",
+    "pk": 2,
+    "fields": {
+      "product": 1,
+      "ingredient": 2,
+      "quantity": 30,
+      "created_at": "2024-12-06T10:00:00",
+      "updated_at": "2024-12-06T10:00:00",
+      "user_id_create_id": 1,
+      "user_id_update_id": 1
+    }
+  },
+  {
+    "model": "inventory.productingredient",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "ingredient": 3,
+      "quantity": 20,
+      "created_at": "2024-12-06T10:00:00",
+      "updated_at": "2024-12-06T10:00:00",
+      "user_id_create_id": 1,
+      "user_id_update_id": 1
+    }
+  },
+  {
+    "model": "inventory.productingredient",
+    "pk": 4,
+    "fields": {
+      "product": 2,
+      "ingredient": 1,
+      "quantity": 75,
+      "created_at": "2024-12-06T10:00:00",
+      "updated_at": "2024-12-06T10:00:00",
+      "user_id_create_id": 1,
+      "user_id_update_id": 1
+    }
+  },
+  {
+    "model": "inventory.productingredient",
+    "pk": 5,
+    "fields": {
+      "product": 2,
+      "ingredient": 2,
+      "quantity": 15,
+      "created_at": "2024-12-06T10:00:00",
+      "updated_at": "2024-12-06T10:00:00",
+      "user_id_create_id": 1,
+      "user_id_update_id": 1
+    }
+  },
+  {
+    "model": "inventory.productingredient",
+    "pk": 6,
+    "fields": {
+      "product": 2,
+      "ingredient": 3,
+      "quantity": 10,
+      "created_at": "2024-12-06T10:00:00",
+      "updated_at": "2024-12-06T10:00:00",
+      "user_id_create_id": 1,
+      "user_id_update_id": 1
+    }
+  }
+]

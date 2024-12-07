@@ -1,0 +1,24 @@
+[
+  {
+    "model": "inventory.product",
+    "pk": 1,
+    "fields": {
+      "name": "burger",
+      "created_at": "2024-12-06T10:00:00",
+      "updated_at": "2024-12-06T10:00:00",
+      "user_id_create_id": 1,
+      "user_id_update_id": 1
+    }
+  },
+  {
+    "model": "inventory.product",
+    "pk": 2,
+    "fields": {
+      "name": "mini burger",
+      "created_at": "2024-12-06T10:00:00",
+      "updated_at": "2024-12-06T10:00:00",
+      "user_id_create_id": 1,
+      "user_id_update_id": 1
+    }
+  }
+]
