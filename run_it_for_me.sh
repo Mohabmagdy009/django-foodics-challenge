@@ -1,5 +1,8 @@
 python3 -m venv .venv
-source .venv/bin/activate
+# mac or linux users
+#source .venv/bin/activate
+# windows
+#.venv\\Scripts\\activate
 cd backend
 # mac or linux users
 #cp .env.example .env
