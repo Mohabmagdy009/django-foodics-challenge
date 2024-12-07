@@ -139,10 +139,12 @@ class OrderTestCase(APITestCase):
 
         payload = {"products": [{"product": self.burger.id, "quantity": 1}]}  # Consume 1.5kg
 
-        # Check for email notification upon stock reaching threshold
-        with self.assertLogs('django.core.mail', level='INFO') as log:
-            self.client.post(self.order_url, payload, format='json')
-            self.assertIn("Stock Alert", "".join(log.output))
+        # Mock email sending function
+        with patch('inventory.serializers.OrderSerializer.notify_low_stock') as mock_notify:
+            # First order: Email should be triggered
+            response = self.client.post(self.order_url, payload, format='json')
+            self.assertEqual(response.status_code, 201)
+            mock_notify.assert_called_once_with(self.beef, 0.5)
 
         # Verify the email_sent flag
         self.beef.refresh_from_db()

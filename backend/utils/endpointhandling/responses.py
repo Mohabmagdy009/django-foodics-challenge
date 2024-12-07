@@ -79,30 +79,6 @@ def update_successful_response(message="Updated Successfully!", data=None, statu
     return standard_response(success=True, message=message, data=data, status_code=status_code, key=key, errors=errors)
 
 
-def file_response(file_path, filename, status_code=status.HTTP_200_OK, as_attachment=True):
-    """
-    Creates a response to serve a file over HTTP.
-
-    Parameters:
-    - file_path (str): Path to the file to be served.
-    - filename (str): Name of the file to be served.
-    - status_code (int): HTTP status code for the response.
-    - as_attachment (bool): Whether to serve the file as an attachment.
-
-    Returns:
-    - Response: A Django FileResponse object if the file exists, or a standard error response.
-    """
-    try:
-        response = FileResponse(open(file_path, 'rb'), as_attachment=as_attachment, filename=filename)
-        response['success'] = True
-        response['message'] = "File downloaded successfully."
-        return response
-    except FileNotFoundError:
-        return standard_response(success=False, message="File not found.", status_code=status.HTTP_404_NOT_FOUND)
-    except Exception as e:
-        return standard_response(success=False, message=str(e), status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
 def deletion_successful_response(message="Deleted Successfully!", status_code=status.HTTP_204_NO_CONTENT, key=""):
     """
     Creates a successful HTTP response indicating that a resource was deleted.

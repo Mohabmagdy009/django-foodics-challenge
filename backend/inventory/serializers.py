@@ -1,9 +1,7 @@
 # region Imports
-from django.db import transaction
-from rest_framework import serializers
 from .models import Order, Product, Ingredient, OrderProduct
 from django.core.mail import send_mail
-from utils.importinglibs.data_manipulation_libs import settings, os
+from utils.importinglibs.data_manipulation_libs import settings, os, transaction, serializers
 # endregion
 
 
